@@ -1,5 +1,4 @@
-//================14.Ключевое слово this====================
-
+//==================13.Методы в обьектах==================
 
 const person = {
     userName: 'Mark',
@@ -9,5 +8,11 @@ const person = {
         console.log(`Привет, ${name}!`)
     }
 }
+
+
+
+// person.sayHi = function (name) {
+//     console.log(`Привет, ${name}!`)
+// }
 
 person.sayHi('Юрий')
