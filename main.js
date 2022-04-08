@@ -1,28 +1,9 @@
-//=================22.Работа с прослушкой событий===============
+//========================23.Обьект event=======================
 
-const inputText = document.querySelector('#input-text')
-const textBlock = document.querySelector('#text-block')
+const list = document.querySelector('#list')
 
-// inputText.addEventListener('input', function() {
-//     // console.log('Input!')
-//     console.log(inputText.value)
-//     textBlock.innerText = inputText.value
-// })
-    
-
-//эта функция может выглядеть в виде стрелочной функции
-
-// inputText.addEventListener('input', () => {
-//     // console.log('Input!')
-//     console.log(inputText.value)
-//     textBlock.innerText = inputText.value
-// })
-
-//функция может быть описанна отдельно 
-
-inputText.addEventListener('input', inputHandler)
-
-function inputHandler () {
-    console.log(inputText.value)
-    textBlock.innerText = inputText.value
-}
+list.addEventListener('click', function(event) {
+    console.log(this)
+    console.log(event)
+    console.log(event.target)
+}) 
