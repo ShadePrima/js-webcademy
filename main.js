@@ -1,27 +1,28 @@
-//===============21.Работа с прослушкой событий=============
+//=================22.Работа с прослушкой событий===============
 
+const inputText = document.querySelector('#input-text')
+const textBlock = document.querySelector('#text-block')
 
-const button = document.querySelector('#button')
-const img = document.querySelector('#logo')
+// inputText.addEventListener('input', function() {
+//     // console.log('Input!')
+//     console.log(inputText.value)
+//     textBlock.innerText = inputText.value
+// })
+    
 
-button.value = 'Удалить'
+//эта функция может выглядеть в виде стрелочной функции
 
-button.addEventListener('click', function () {
-    console.log('Click1!')
-    img.remove()
-})
+// inputText.addEventListener('input', () => {
+//     // console.log('Input!')
+//     console.log(inputText.value)
+//     textBlock.innerText = inputText.value
+// })
 
-button.addEventListener('click', function () {
-    console.log('Click2!')
-    img.remove()
-})
+//функция может быть описанна отдельно 
 
-button.addEventListener('click', function () {
-    console.log('Click3!')
-    img.remove()
-})
+inputText.addEventListener('input', inputHandler)
 
-// button.onclick = function () {
-//     console.log('Click!')
-//     img.remove()
-// }
+function inputHandler () {
+    console.log(inputText.value)
+    textBlock.innerText = inputText.value
+}
