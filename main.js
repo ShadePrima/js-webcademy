@@ -1,31 +1,26 @@
-//===================19.Работа с CSS классами==================
+//==================20.Работа с атрибутами========================
 
 /*
-element.classList.add()
-.add() // Добавляет css класс
-.remove() // Удаляет css класс
-.toggle() // Переключает css  класс 
-.contains() // Возвращает true или false   
+getAttribute(attrName) // взвращает значение указанного атрибута
+setAttribute(name, value) //добвляет указаный атрибут и его значение к элементу
+hasAttribute(attrName) // возвращает true при наличии у элумента указанного атрибута
+removeAttribute(attrName) //удаляет указанный атрибут 
+toggleAttribute(name, force) // добавляет новый атрибут при отсутствии или 
+// удаляет существующией атрибут 
+hasAttributes() // возвращает trut при наличии у элемента каких либо атрибутов
+getAttributesNames() //возвращает название атрибутов элемента  
 */
 
-const heading = document.querySelector('h2')
-// heading.classList. 
-// console.log(heading)
 
-// heading.classList.add('red-text')
-// heading.classList.remove('red-text')
-// const res = heading.classList.toggle('green-text')
-// if (res) {
+const img = document.querySelector('#logo')
+// // console.log(img)
+// const srcValue = img.getAttribute('src')
+// console.log(srcValue) 
 
-// }else {
+// img.setAttribute('src', './img/php.png')
+// img.setAttribute(' ', '200')
+// img.src = './img/js.png' 
 
-// }
-
-// heading.classList.toggle('green')
-
-const heading = heading.classList.contains('green')
-if (heading.classList.contains('green')) {
-
-}else {
-
-}
+const button = document.querySelector('#button')
+button.setAttribute('value',  'Отправить')
+button.value = 'Текст для кнопки'
