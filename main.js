@@ -1,47 +1,21 @@
-//=====================24.Работа с элементами===================
+//==================25.ToDo список задач=====================
 
-/*
-//Создание элемента 
-document.createElement('teg-name')
+const todoList = document.querySelector('#todo-list')
+const todoForm = document.querySelector('#todo-form')
+const todoInput = document.querySelector('#todo-input')
 
-//Изменить содержимое внутри HTML элемента
-element.innerHTML = ''
+todoForm.addEventListener('submit', formHandler)
 
-//Изменить текстовое содержимое внутри элемента 
-node.innerText = ''
+function formHandler(event) {
+    event.preventDefault()
 
-//Клонирование элемента 
-node.cloneNode() // true с внутренним содержимым (текст и теги)
-false - без внутреннего содержимого
+    //Получаем название задачи из инпута
+    const taskText = todoInput.value
 
-//вставить элемент внутрь другого элемента  
-element.append(nodesOrDOMStrings)
+    //Создаем тег li через разметку 
+    const li = `<li>${taskText}</li>`
+    console.log(li)
 
-// Удалить элемент 
-element.remove()
+    //Добавляем разметку на страницу 
 
-*/
-
-//Выбор контейнера 
-
-const container = document.querySelector('#elementsContainer')
-
-//создание заголовка 
-
-const newHeader = document.createElement('h1')
-newHeader.innerText = 'Новый заголовок'
-container.append(newHeader)
-
-//Копирование шапки
- 
-
-//Вставка разметки через строки
-
-// const htmlExample = '<h2>Еще один заголовок</h2>'
-// container.insertAdjacentHTML('beforeend', htmlExample)
-
-//всавка разметки через шаблонные строки 
-
-const title = 'Текст заголовка'
-const htmlExample = `<h2>${title}</h2>`
-container.insertAdjacentHTML('beforeend', htmlExample)
+}
