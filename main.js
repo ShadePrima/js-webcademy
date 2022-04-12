@@ -1,59 +1,26 @@
-//==================25.ToDo список задач=====================
+//=====================26. setInterval==================
 
-const todoList = document.querySelector('#todo-list')
-const todoForm = document.querySelector('#todo-form')
-const todoInput = document.querySelector('#todo-input')
+// const timerIntervalID = setInterval(function() {
+//     console.log('Fired!')
+// }, 1000)
 
-todoForm.addEventListener('submit', formHandler)
-
-function formHandler(event) {
-    event.preventDefault()
-
-    //Получаем название задачи из инпута
-    const taskText = todoInput.value
- 
-    //Создаем тег li через разметку 
-    // const li = `<li>${taskTe 
-
-    //Добавляем разметку на страницу 
-    // todoList.insertAdjacentHTML('beforeend', li)
-
-    //создаем тег li с помощью создания элемента 
-    const newTask = document.createElement('li')
-    newTask.innerText = taskText
-    
-
-    //создаем кнопку удалить
-    const deleteBtn = document.querySelector('button')
-    deleteBtn.setAttribute('role', 'button')
-    deleteBtn.innerText = 'Удалить'
-    deleteBtn.style['margin-left'] = '15px'
-    newTask.append(deleteBtn)
+// clearInterval(timerIntervalID)
 
 
-    //Добавляем событие по клику
-    // deleteBtn.addEventListener('click', function() { 
-    //     this.closest('li').remove()
-    // })
+//======================setTimeOut=========================
 
-    deleteBtn.addEventListener('click', deleteTask)
+// const timerID = setTimeout(function() {
+//     console.log('setTimeout Fired!')
+// }, 2000) 
 
+// clearInterval(timerID)
 
+//=================setInterval + setTimeout==================
 
+const timerID = setInterval(function() {
+    console.log('setInterval Fired')
+}, 2000)
 
-    //добавляем элемент на страницу
-    todoList.append(newTask)
-
-    //Очищаем поле ввода 
-    todoInput.value = ''
-
-    //Фокус на поле ввода 
-    todoInput.focus()
-
-
-} 
-
-
-function deleteTask() {
-    this.closest('li').remove()
-}
+setTimeout(function() {
+    clearInterval(timerID)
+}, 10000)
