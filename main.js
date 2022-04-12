@@ -1,26 +1,35 @@
-//=====================26. setInterval==================
+//=========================27.Секундомер==========================
 
-// const timerIntervalID = setInterval(function() {
-//     console.log('Fired!')
-// }, 1000)
+const counterElement = document.querySelector('#counter')
 
-// clearInterval(timerIntervalID)
+let counter = 0
+let timerID 
+
+//Старт
+const buttonStart = document.querySelector('#start')
+buttonStart.onclick = function() {
+    console.log('Start')
+    timerID = setInterval(function() {
+    // counter = counter + 1
+    // counter += 1
+    counter ++
+    counterElement.innerText = counter
+}, 1000)
+    console.log('timerID', timerID)
+} 
 
 
-//======================setTimeOut=========================
-
-// const timerID = setTimeout(function() {
-//     console.log('setTimeout Fired!')
-// }, 2000) 
-
-// clearInterval(timerID)
-
-//=================setInterval + setTimeout==================
-
-const timerID = setInterval(function() {
-    console.log('setInterval Fired')
-}, 2000)
-
-setTimeout(function() {
+//Пауза
+const buttonPausa = document.querySelector('#pause')
+buttonPausa.onclick = function() {
+    console.log('Pausa')
     clearInterval(timerID)
-}, 10000)
+}
+
+//Сброс
+const buttonReset = document.querySelector('#reset')
+buttonReset.onclick = function() {
+    counter = 0
+    counterElement.innerText = counter
+    clearInterval(timerID)
+}
