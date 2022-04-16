@@ -1,124 +1,175 @@
-//=====================28.Collback. Collback hell===================
+// //====================29.Создание промиса====================
+
+//  const myPromise = new Promise(function(resolve, reject){
+//      console.log('Promise created')
+//      setTimeout(function() {
+//          //запрос на сервер
+//          const response = true
+//          if (response) {
+//              let message = 'SUCCESS' 
+//              resolve(message)
+//          } else {
+//              let message = 'FAILED'
+//              reject(message)
+//          }
+
+//      }, 1500)
+//  }) 
+
+//  myPromise.then(function(data) {
+
+//     return new Promise(function(resolve, reject) {
+//         setTimeout(() => {
+//             console.log('Then 1')
+//             console.log(data)
+
+//             const response = false
+//             if (response) {
+//                 resolve('Data from then 1')
+//             } else {
+//                 reject('Data from then 1')
+//             }
+//          }, 1000)
+//     }) 
 
 
-// setTimeout(function() {
-//     console.log('Step1')
-//     setTimeout(function(){
-//         console.log('Step2')
-//         setTimeout(function(){
-//             console.log('Step3')
-//         }, 1000)
-//     }, 1500)
-// }, 3000)
+     
+    
+//  }).then(function(data) {  
+//      setTimeout(() => {
+//         console.log('Then 2')
+//         console.log(data)
+//      })
+     
+//  }).catch(function(data) {
+//      console.log('Catch')
+//      console.log(data)
+// })
 
 
+//========== Цепочка промисов. Несколько промиссов в setTimeout=========
 
-
-
-
-
-// function checkRooms() {
+// const checkRooms = new Promise(function(resolve, reject) {
 //     setTimeout(function() {
-//         console.log('Проверяем номера в отеле ...')
-//         const availableRooms = false
-
+//         console.log('Проверяем номера в отеле ... ')
+//         const availableRooms = true
 
 //         if (availableRooms) {
-//             console.log('Номера есть!')
-//             console.log('Едем в отпуск!')
-//         }else {
-//             console.log('Номеров нет!')
-//             console.log('Отпуск отменяется!')
-//         }
-        
-//     }, 1000)
-// }
-// checkRooms()
+//             resolve('Номера есть!')
+//         } else {
+//             reject('Номеров нет!')
+//         } 
 
+//     })
+// })
 
-//Проверяем номера в отеле 
-//Проверяем авиабилеты
+// checkRooms.then(function(data) {
+//      return new Promise(function(resolve, reject) {
+//         setTimeout(() => {
+//             console.log('-----then 1-----')
+//             console.log('Ответ на предыдущем шаге', data)
+//             console.log('Проверяем авиаблеты ...')
+//             const availableTickets = true
 
-//Летим в отпуск
-//Отпуск отменяется 
+//             if (availableTickets) {
+//                 let message = 'Билеты есть!'
+//                 resolve( message)
+//             } else {
+//                 let message = 'Билетов нет'
+//                 reject(message)
+//             }
 
+//         }, 1000)
+//      })
+// }).then(function(data) {
+//     console.log('-----then 2-----')
+//     console.log('Ответ на предыдущем шаге', data)
+//     console.log('Едем в отпук')
+// }).catch(function(data) {
+//      console.log('---catch---')
+//      console.log('Ответ на предыдущем шаге', data)
+//      console.log('Отпуск отменяется')
+// })
 
-function checkRooms(success, failed) {
-    setTimeout(function() {
-        console.log('Проверяем номер в отеле ...')
-        const availableRooms = false
+// checkRooms.then(function(data) {
+//     console.log('---then1. submitVacation---')
+//     console.log('Ответ на предыдущем шаге', data)
+//     console.log('Едем в отпуск')
+// }).catch(function(data) {
+//     console.log('---catch---')
+//     console.log('Ответ на предыдущем шаге', data)
+//     console.log('Отпуск отменяется')
+// })
 
-        if (availableRooms) {
-            let message = 'Номера есть'
-            // submitVacation(message)
-            success(message)
-        }else {
-            let message = 'Номеров нет'
-            // cancelVacation(message)
-            failed(message)
-        }
-
-    }, 1000)
- }
-
- function cancelVacation(message) {
-    console.log('---  cancelVacation ----')
-    console.log('Ответ на предыдущем шаге:', message)
-    console.log('Отпуск отменяется :(')
-}
-
-function submitVacation(message) {
-    console.log('---- submitVacation ----')
-    console.log('Ответ на предыдущем шаге:', message)
-    console.log('Едем в отпуск!')
-}
-
-function checkTickets(message, success, failed) {
-    setTimeout(function() {
-        console.log('----function checkTicets')
-        console.log('Ответ на предыдущем шаге:', message)
-
-        console.log('Проверяем авиабилеты ...')
-        // ----код который отправляет запрос в авиакомпанию ----
-        const availableTickets = true
-
-        if (availableTickets) {
-            let message = 'Билеты есть'
-            success(message)
-        } else {
-            let message = "Билетов нет"
-            failed(message)
-        }
-    }, 500)
-}
-
-//callbacl hell разрастается 
-//код уезжает вправо 
-
-
-checkRooms(
-    function(messageFromCheckRooms) {
-        checkTickets(
-            messageFromCheckRooms, 
-            function(messageFromCheckTickets) {
-                submitVacation(messageFromCheckTickets)
-            },
-            function(messageFromCheckTickets) {
-                cancelVacation(messageFromCheckTickets)
-         })
- }, 
- function(messageFromCheckRooms) {
-        cancelVacation(messageFromCheckRooms)
-})
+ //==========Цепочка промиссов Создаем отдельные функции========
 
 
  
-
-
-
-        
+ 
+ 
+//  const checkRooms = 
     
+    // checkRooms.then(function(data) {
+         
+    // }).then(function(data) {
+    //     console.log('-----then 2-----')
+    //     console.log('Ответ на предыдущем шаге', data)
+    //     console.log('Едем в отпук')
+    // }).catch(function(data) {
+    //      console.log('---catch---')
+    //      console.log('Ответ на предыдущем шаге', data)
+    //      console.log('Отпуск отменяется')
+    // })
+    
+    checkRooms()
+        .then(checkTickets)
+        .then(success)
+        .catch(failed)
 
+    function checkRooms () {
+        return new Promise(function(resolve, reject) {
+           setTimeout(function() {
+               console.log('Проверяем номера в отеле ... ')
+               const availableRooms = false
+       
+               if (availableRooms) {
+                   resolve('Номера есть!')
+               } else {
+                   reject('Номеров нет!')
+               } 
+       
+           }, 1500)
+       })
+    }
 
+    function checkTickets (data) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(() => {
+                console.log('-----then 1-----')
+                console.log('Ответ на предыдущем шаге', data)
+                console.log('Проверяем авиаблеты ...')
+                const availableTickets = false
+    
+                if (availableTickets) {
+                    let message = 'Билеты есть!'
+                    resolve( message)
+                } else {
+                    let message = 'Билетов нет'
+                    reject(message)
+                }
+    
+            }, 1000)
+         })
+    }
 
- 
+    function success (data) {
+        console.log('---then1. submitVacation---')
+        console.log('Ответ на предыдущем шаге', data)
+        console.log('Едем в отпуск')
+    }    
+    
+    function failed (data) {
+        console.log('---catch---')
+        console.log('Ответ на предыдущем шаге', data)
+        console.log('Отпуск отменяется')
+    }
